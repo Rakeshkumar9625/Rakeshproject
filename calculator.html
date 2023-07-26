@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family:'poppins',sans-serif;
+            box-sizing: border-box; 
+
+        }
+        .container{
+            width:100%;
+            height:100vh;
+            background: #e3f9ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculator{
+            background: #3a4452;
+            padding:20px;
+            border-radius: 10px;
+        }
+        .calculator form input{
+            border: 0;
+            outline: 0;
+            width:60px;
+            height:60px;
+            border-radius: 10px;
+            box-shadow: -8px -8px 15px rgba(255,255,255,0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
+            background: transparent;
+            font-size: 20px;
+            color:#fff;
+            cursor: pointer;
+            margin: 10px;
+        }
+        input#eq{ 
+              /* border:1px solid red; */
+            box-shadow: -8px -8px 15px rgba(255,255,255,0.1),5px 5px 15px rgba(0, 0, 0, 0.2);
+
+        }
+        form .display{
+            display: flex;
+            justify-content: flex-end;
+            margin:20px 0; 
+        }
+        form .display input{
+          text-align: right; 
+          flex: 1;
+          font-size: 45px;
+          box-shadow: none; 
+        }
+        form input.equal{
+            width:145px;
+            color:#7ddf27;
+        }
+        form input.operator{
+            color:#7ddf27;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="calculator">
+        <form>
+            <div class="display">
+                <input type="text" name="display" id="eq">
+
+            </div>
+            <div>
+                <input type="button" value="AC" onclick="clearall()" class="operator">
+                <input type="button" value="DE" onclick="clearone()" class="operator">
+                <input type="button" value="." class="operator in" >
+                <input type="button" value="/" class="operator in" >
+             </div>
+             <div>
+                <input type="button" value="7" class="in">
+                <input type="button" value="8"  class="in" >
+                <input type="button" value="9" class="in" >
+                <input type="button" value="*" class="operator in">
+             </div>
+             <div>
+                <input type="button" value="4" class="in" >
+                <input type="button" value="5" class="in" >
+                <input type="button" value="6" class="in" >
+                <input type="button" value="-" class="operator in">
+             </div>
+             <div>
+                <input type="button" value="1"class="in" >
+                <input type="button" value="2" class="in" >
+                <input type="button" value="3" class="in">
+                <input type="button" value="+" class="operator in">
+             </div>
+             <div>
+                <input type="button" value="00" class="operator in">
+                <input type="button" value="0" class="operator in">
+                <input type="button" value="=" onclick="solve()" class="equal" >
+             </div>
+        </form>
+    </div>
+    </div>
+   
+    <script>
+        let eq = document.getElementById("eq");
+        let inputs = document.querySelectorAll("input.in");
+        console.log(inputs.length);
+
+        inputs. forEach(x =>{
+            x.addEventListener("click",() =>{
+                eq.value += x.value;
+            })
+        })
+
+        function clearall(){
+            eq.value ="";
+        }
+
+        function solve(){
+            eq.value = eval (eq.value);
+        }
+
+        function clearone(){
+            eq.value = eq.value.slice(0,eq.value.length-1);
+        }
+    </script>
+</body>
+</html>
